@@ -36,7 +36,13 @@ const routes: Routes = [
     path: 'insight',
     pathMatch: 'full',
     component: InsightComponent
+  },
+  {
+    path: 'static',
+    pathMatch: 'full',
+    redirectTo: 'bars'
   }
+
 ];
 
 @NgModule({
