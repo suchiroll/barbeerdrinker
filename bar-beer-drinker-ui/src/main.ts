@@ -10,3 +10,12 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.log(err));
+
+.directive('wordCountChart', ['$parse', function ($parse) {
+  return {
+    restrict: 'E',
+    replace: true,
+    template: '<div id="chart"></div>',
+    link: function (scope) {}
+   };
+}]);

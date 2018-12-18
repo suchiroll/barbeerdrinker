@@ -4,6 +4,7 @@ from sqlalchemy import sql
 from BarBeerDrinker import config
 
 engine = create_engine(config.database_uri)
+print(engine);
 
 def get_bars():
     with engine.connect() as con:
@@ -131,3 +132,4 @@ def get_drinker_info(drinker_name):
         if result is None:
             return None
         return dict(result)
+

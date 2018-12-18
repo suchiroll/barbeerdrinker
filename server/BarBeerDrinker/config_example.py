@@ -1,1 +1,1 @@
-database_uri = "mysql+pymysql://username:password@localhost:3306/BarBeerDrinker"
+database_uri = "mysql+pymysql://root:password@localhost:3306/cs336"
