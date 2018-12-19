@@ -7,6 +7,8 @@ import { BeersComponent } from './beers/beers.component';
 import { InsightComponent } from './insight/insight.component';
 import {BarGraphComponent } from './bargraph/bargraph.component';
 import {DrinkersComponent } from './drinkers/drinkers.component';
+import {AvgPriceComponent } from './avgprice/avgprice.component';
+
 
 const routes: Routes = [
   {
@@ -47,6 +49,11 @@ const routes: Routes = [
   { path: 'drinkers',
     pathMatch: 'full',
     component: DrinkersComponent
+  },
+  {
+  path: 'avgprice',
+  pathMatch: 'full'
+  component: AvgPriceComponent
   }
 ];
 

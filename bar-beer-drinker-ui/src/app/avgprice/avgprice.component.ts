@@ -1,29 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { DrinkersService } from '../drinkers.service';
+import { BarsService } from '../bars.service';
 
 declare const Highcharts: any;
 
 @Component({
-  selector: 'app-bargraph',
-  templateUrl: './bargraph.component.html',
-  styleUrls: ['./bargraph.component.css']
+  selector: 'app-avgprice',
+  templateUrl: './avgprice.component.html',
+  styleUrls: ['./avgprice.component.css']
 })
-export class BarGraphComponent implements OnInit {
+export class AvgPriceComponent implements OnInit {
 
-  constructor(private drinkersService: DrinkersService) {
-    this.drinkersService.getDrinkerCounts().subscribe(
+  constructor(private barService: BarsService) {
+    this.barService.getAvgPrice().subscribe(
       data => {
         console.log(data);
 
-        const beers = [];
-        const counts = [];
+        const bars = [];
+        const price = [];
 
-        data.forEach(beer => {
-          beers.push(beer.beer);
-          counts.push(beer.likesCount);
+        data.forEach(bar => {
+          bars.push(bar.bar);
+          price.push(bar.avg);
         });
 
-        this.renderChart(beers, counts);
+        this.renderChart(bars, price);
       }
     );
   }
@@ -37,18 +37,18 @@ export class BarGraphComponent implements OnInit {
         type: 'column'
       },
       title: {
-        text: 'Drinkers by Beer'
+        text: 'Avg Price By Bar'
       },
       xAxis: {
         categories: bars,
         title: {
-          text: 'Beer'
+          text: 'Bar'
         }
       },
       yAxis: {
         min: 0,
         title: {
-          text: 'Number of Drinkers'
+          text: 'Average Price'
         },
         labels: {
           overflow: 'justify'

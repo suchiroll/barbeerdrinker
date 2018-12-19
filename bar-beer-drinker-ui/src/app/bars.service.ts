@@ -45,4 +45,8 @@ export class BarsService {
   getDrinkerCounts() {
     return this.http.get<any[]>('/api/frequents-drinker');
   }
+
+  getAvgPrice() {
+    return this.http.get<any[]>('/api/avgprice');
+  }
 }

@@ -138,3 +138,10 @@ def get_drinker_frequent_counts():
         return jsonify(database.get_drinker_frequent_counts())
     except Exception as e:
         return make_response(str(e), 500)
+
+@app.route('/api/avgprice', methods=['GET'])
+def get_avg_price():
+    try:
+        return jsonify(database.get_avg_price())
+    except Exception as e:
+        return make_response(str(e), 500)

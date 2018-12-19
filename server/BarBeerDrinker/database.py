@@ -140,9 +140,20 @@ def get_drinker_info(drinker_name):
 
 def get_drinker_frequent_counts():
     with engine.connect() as con:
-        query = sql.text('SELECT customer, count(*) as frequentCount \
-                FROM frequents \
-                GROUP BY customer; \
+        query = sql.text('SELECT beer, count(*) as likesCount \
+                FROM likes\
+                GROUP BY beer; \
+            ')
+        rs = con.execute(query)
+        results = [dict(row) for row in rs]
+        return results
+
+
+def get_avg_price():
+    with engine.connect() as con:
+        query = sql.text('SELECT bar, AVG(price) as avg \
+                FROM sells\
+                GROUP BY bar; \
             ')
         rs = con.execute(query)
         results = [dict(row) for row in rs]

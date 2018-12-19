@@ -16,6 +16,7 @@ import { BeersComponent } from './beers/beers.component';
 import { InsightComponent } from './insight/insight.component';
 import {BarGraphComponent} from './bargraph/bargraph.component';
 import {DrinkersComponent} from './drinkers/drinkers.component'
+import {AvgPriceComponent} from './avgprice/avgprice.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {DrinkersComponent} from './drinkers/drinkers.component'
     BeersComponent,
     InsightComponent,
     BarGraphComponent,
-    DrinkersComponent
+    DrinkersComponent,
+    AvgPriceComponent
   ],
   imports: [
     BrowserModule,
