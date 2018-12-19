@@ -3,18 +3,22 @@ from sqlalchemy import sql
 
 from BarBeerDrinker import config
 
+print("ARE YOU DOING THIS") 
+
 engine = create_engine(config.database_uri)
-print(engine);
+
+print("what about now")
+
 
 def get_bars():
     with engine.connect() as con:
-        rs = con.execute("SELECT name, license, city, phone, addr FROM bars;")
+        rs = con.execute("SELECT name, license, city, phone, address FROM bars;")
         return [dict(row) for row in rs]
 
 def find_bar(name):
     with engine.connect() as con:
         query = sql.text(
-            "SELECT name, license, city, phone, addr FROM bars WHERE name = :name;"
+            "SELECT name, license, city, phone, address FROM bars WHERE name = :name;"
         )
 
         rs = con.execute(query, name=name)
@@ -39,7 +43,7 @@ def filter_beers(max_price):
 def get_bar_menu(bar_name):
     with engine.connect() as con:
         query = sql.text(
-            'SELECT a.bar, a.beer, a.price, b.manf, coalesce(c.like_count, 0) as likes \
+            'SELECT a.bar, a.beer, a.price, b.manufacturer, coalesce(c.like_count, 0) as likes \
                 FROM sells as a \
                 JOIN beers AS b \
                 ON a.beer = b.name \
@@ -91,27 +95,27 @@ def get_beers():
     """Gets a list of beer names from the beers table."""
 
     with engine.connect() as con:
-        rs = con.execute('SELECT name, manf FROM beers;')
+        rs = con.execute('SELECT name, manufacturer FROM beers;')
         return [dict(row) for row in rs]
 
 
 def get_beer_manufacturers(beer):
     with engine.connect() as con:
         if beer is None:
-            rs = con.execute('SELECT DISTINCT manf FROM beers;')
-            return [row['manf'] for row in rs]
+            rs = con.execute('SELECT DISTINCT manufacturer FROM beers;')
+            return [row['manufacturer'] for row in rs]
 
-        query = sql.text('SELECT manf FROM beers WHERE name = :beer;')
+        query = sql.text('SELECT manufacturer FROM beers WHERE name = :beer;')
         rs = con.execute(query, beer=beer)
         result = rs.first()
         if result is None:
             return None
-        return result['manf']
+        return result['manufacturer']
 
 
 def get_drinkers():
     with engine.connect() as con:
-        rs = con.execute('SELECT name, city, phone, addr FROM drinkers;')
+        rs = con.execute('SELECT name, city, phone, address FROM drinkers;')
         return [dict(row) for row in rs]
 
 
@@ -132,4 +136,17 @@ def get_drinker_info(drinker_name):
         if result is None:
             return None
         return dict(result)
+
+
+def get_drinker_frequent_counts():
+    with engine.connect() as con:
+        query = sql.text('SELECT customer, count(*) as frequentCount \
+                FROM frequents \
+                GROUP BY customer; \
+            ')
+        rs = con.execute(query)
+        results = [dict(row) for row in rs]
+        return results
+
+
 

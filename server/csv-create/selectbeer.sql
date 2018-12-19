@@ -1,0 +1,1 @@
+SELECT beer FROM newschema.barbeer;
