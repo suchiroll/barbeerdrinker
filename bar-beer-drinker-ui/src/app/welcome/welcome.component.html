@@ -7,7 +7,7 @@
 
 <div class="container">
 
-  <p-table [value]="bars">
+  <p-table [value]="bars" [paginator]="true" [rows]="10">
     <ng-template pTemplate="header">
         <tr>
           <th>Name</th>
@@ -17,7 +17,7 @@
           <th>Phone</th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-bar>
+    <ng-template pTemplate="body" let-bar >
         <tr>
           <td>
             <a routerLink="/bars/{{ bar.name }}">
@@ -25,7 +25,7 @@
             </a>
           </td>
           <td>{{ bar.license }}</td>
-          <td>{{ bar.addr }}</td>
+          <td>{{ bar.address }}</td>
           <td>{{ bar.city }}</td>
           <td>{{ bar.phone }}</td>
         </tr>

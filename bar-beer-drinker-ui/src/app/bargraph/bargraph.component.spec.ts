@@ -1,21 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BarDetailsComponent } from './bar-details.component';
+import { BarGraphComponent } from './BarGraph.component';
 
-
-describe('BarDetailsComponent', () => {
-  let component: BarDetailsComponent;
-  let fixture: ComponentFixture<BarDetailsComponent>;
+describe('BarGraphComponent', () => {
+  let component: BarGraphComponent;
+  let fixture: ComponentFixture<BarGraphComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BarDetailsComponent ]
+      declarations: [ BarGraphComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BarDetailsComponent);
+    fixture = TestBed.createComponent(BarGraphComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -24,5 +23,3 @@ describe('BarDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
-

@@ -7,12 +7,12 @@ export interface Bar {
   license: string;
   city: string;
   phone: string;
-  addr: string;
+  address: string;
 }
 
 export interface BarMenuItem {
   beer: string;
-  manf: string;
+  manufacturer: string;
   price: number;
   likes: number;
 }
@@ -40,5 +40,9 @@ export class BarsService {
 
   getFrequentCounts() {
     return this.http.get<any[]>('/api/frequents-data');
+  }
+
+  getDrinkerCounts() {
+    return this.http.get<any[]>('/api/frequents-drinker');
   }
 }

@@ -2,7 +2,7 @@
     <div class="container">
         <h1 class="display-4">{{ barName }}</h1>
         <p class="bar-details" *ngIf="barDetails">
-            {{ barDetails?.addr }} <span *ngIf="barDetails.addr && barDetails.city">|</span> {{ barDetails?.city }}
+            {{ barDetails?.address }} <span *ngIf="barDetails.address && barDetails.city">|</span> {{ barDetails?.city }}
             <br>
             {{ barDetails?.phone }}
         </p>
@@ -16,7 +16,7 @@
         <ng-template pTemplate="header">
             <tr>
                 <th>Beer</th>
-                <th>Menufacturer</th>
+                <th>Menu</th>
                 <th>Price</th>
                 <th>Likes</th>
             </tr>
@@ -24,10 +24,12 @@
         <ng-template pTemplate="body" let-item>
             <tr>
                 <td><a routerLink="/beers/{{ item.beer }}">{{ item.beer }}</a></td>
-                <td>{{ item.manf }}</td>
+                <td>{{ item.manufacturer }}</td>
                 <td>{{ item.price | currency }}</td>
                 <td>{{ item.likes }}</td>
             </tr>
         </ng-template>
     </p-table>
+    
+    <div id="bargraph"></div>
 </div>

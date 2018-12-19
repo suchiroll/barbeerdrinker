@@ -5,10 +5,12 @@ import { BarDetailsComponent } from './bar-details/bar-details.component';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeersComponent } from './beers/beers.component';
 import { InsightComponent } from './insight/insight.component';
+import {BarGraphComponent } from './bargraph/bargraph.component';
+import {DrinkersComponent } from './drinkers/drinkers.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'static',
     pathMatch: 'full',
     redirectTo: 'bars'
   },
@@ -38,11 +40,14 @@ const routes: Routes = [
     component: InsightComponent
   },
   {
-    path: 'static',
+    path: 'bargraph',
     pathMatch: 'full',
-    redirectTo: 'bars'
+    component: BarGraphComponent
+  },
+  { path: 'drinkers',
+    pathMatch: 'full',
+    component: DrinkersComponent
   }
-
 ];
 
 @NgModule({
