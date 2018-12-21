@@ -145,3 +145,110 @@ def get_avg_price():
         return jsonify(database.get_avg_price())
     except Exception as e:
         return make_response(str(e), 500)
+
+@app.route('/api/drinkerbeer/<name>', methods=['GET'])
+def get_drinkerbeer(name):
+    try:
+        if name is None:
+            raise ValueError('Bar is not specified.')
+        drinker = database.find_drinker(name)
+        if drinker is None:
+            return make_response("No bar found with the given name.", 404)
+        return jsonify(database.get_drinker_beer(name))
+    except ValueError as e:
+        return make_response(str(e), 400)
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/test/<name>', methods=['GET'])
+def get_drinker_frequent_counts_by_bar(name):
+    try:
+        return jsonify(database.get_drinker_frequent_counts_by_bar(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/beersales/<name>', methods=['GET'])
+def beerSales(name):
+    try:
+        return jsonify(database.beerSales(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/drinkersales/<name>', methods=['GET'])
+def drinkerSales(name):
+    try:
+        return jsonify(database.drinkerSales(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/topbarsbybeer/<name>', methods=['GET'])
+def barSales(name):
+    try:
+        return jsonify(database.barSales(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/beerdrinkers/<name>', methods=['GET'])
+def beerDrinkers(name):
+    try:
+        return jsonify(database.beerDrinkers(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/beersdrankby/<name>', methods=['GET'])
+def beersDrankBy(name):
+    try:
+        return jsonify(database.beersDrankBy(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/barsfrequentedby/<name>', methods=['GET'])
+def barsFrequentedBy(name):
+    try:
+        return jsonify(database.barsFrequentedBy(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/drinkermonth/<name>', methods=['GET'])
+def drinkerByMonth(name):
+    try:
+        return jsonify(database.drinkerByMonth(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/drinkerweek/<name>', methods=['GET'])
+def drinkerByWeek(name):
+    try:
+        return jsonify(database.drinkerByWeek(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/barmonth/<name>', methods=['GET'])
+def barByMonth(name):
+    try:
+        return jsonify(database.barByMonth(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/barweek/<name>', methods=['GET'])
+def barByWeekday(name):
+    try:
+        return jsonify(database.barByWeekday(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+
+@app.route('/api/barhour/<name>', methods=['GET'])
+def barByHour(name):
+    try:
+        return jsonify(database.barByHour(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/beerhour/<name>', methods=['GET'])
+def beerByHour(name):
+    try:
+        return jsonify(database.beerByHour(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+

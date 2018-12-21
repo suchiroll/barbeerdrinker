@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+export interface Beer {
+  name: string;
+  manufacturer: string;
+}
+
 export interface BeerLocation {
   bar: string;
   price: number;
@@ -28,5 +33,18 @@ export class BeersService {
     }
     return this.http.get<string[]>('/api/beer-manufacturer');
   }
+
+  barSales(beer: string) {
+    return this.http.get<any[]>('/api/topbarsbybeer/'+beer);
+  }
+
+  beerDrinkers(beer: string) {
+    return this.http.get<any[]>('/api/beerdrinkers/'+ beer);
+  }
+
+  beerHour(beer: string) {
+    return this.http.get<any[]>('/api/beerhour/'+ beer);
+  }
+
 
 }

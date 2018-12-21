@@ -25,7 +25,7 @@ for i in drinkerdata:
 	#randint_drinker = random.randint(1, len(drinkerdata)-1)
 	#randint_beer = random.randint(1, len(beerdata)-1)
 	count = 0;
-	while(count < 2):
+	while(count < 5):
 		randBeer = random.randint(0,len(beerdata)-1)
 		#print(drinkerdata[rownum-1][0], randBeer, beerdata[randBeer][0])
 		

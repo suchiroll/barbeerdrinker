@@ -49,4 +49,26 @@ export class BarsService {
   getAvgPrice() {
     return this.http.get<any[]>('/api/avgprice');
   }
+
+  beerSales(bar: string){
+     return this.http.get<any[]>('/api/beersales/' + bar);
+  }
+
+  drinkerSales(bar: string){
+     return this.http.get<any[]>('/api/drinkersales/' + bar);
+  }
+
+  barMonth(bar: string){
+     return this.http.get<any[]>('/api/barmonth/' + bar);
+  }
+
+  barWeek(bar: string){
+     return this.http.get<any[]>('/api/barweek/' + bar);
+  }
+
+  barHour(bar: string){
+     return this.http.get<any[]>('/api/barhour/' + bar);
+  }
+
+
 }

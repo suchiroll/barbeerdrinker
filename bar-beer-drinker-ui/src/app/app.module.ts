@@ -17,6 +17,8 @@ import { InsightComponent } from './insight/insight.component';
 import {BarGraphComponent} from './bargraph/bargraph.component';
 import {DrinkersComponent} from './drinkers/drinkers.component'
 import {AvgPriceComponent} from './avgprice/avgprice.component'
+import {DrinkerDetailsComponent} from './drinker-details/drinker-details.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import {AvgPriceComponent} from './avgprice/avgprice.component'
     InsightComponent,
     BarGraphComponent,
     DrinkersComponent,
-    AvgPriceComponent
+    AvgPriceComponent,
+    DrinkerDetailsComponent
   ],
   imports: [
     BrowserModule,

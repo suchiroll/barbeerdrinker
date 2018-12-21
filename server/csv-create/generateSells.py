@@ -29,8 +29,11 @@ for i in bardata:
 	while(count < 10):
 		randBeer = random.randint(0,len(beerdata)-1)
 		#print(bardata[rownum-1][0], randBeer, beerdata[randBeer][0])
-		
-		randPrice = float(decimal.Decimal(random.randrange(450,950))/100)
+		randPrice = 0;
+		if(randBeer%2 == 0):
+			randPrice = float(decimal.Decimal(random.randrange(450,950))/100)
+		else:
+			randPrice = float(decimal.Decimal(random.randrange(450,950))/100)
 		#print(randPrice)
 		new_row = [bardata[rownum-1][0], beerdata[randBeer][0], randPrice]
 		new_rows_list.append(new_row)

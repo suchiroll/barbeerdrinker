@@ -62,7 +62,7 @@ def get_bars_selling(beer):
     with engine.connect() as con:
         query = sql.text('SELECT a.bar, a.price, b.customers \
                 FROM sells AS a \
-                JOIN (SELECT bar, count(*) AS customers FROM frequents GROUP BY bar) as b \
+                JOIN (SELECT bar, count(*) AS customers  FROM frequents GROUP BY bar) as b \
                 ON a.bar = b.bar \
                 WHERE a.beer = :beer \
                 ORDER BY a.price; \
@@ -160,4 +160,171 @@ def get_avg_price():
         return results
 
 
+def find_drinker(name):
+    with engine.connect() as con:
+        query = sql.text(
+            "SELECT name, city, phone, address FROM drinkers WHERE name = :name;"
+        )
 
+        rs = con.execute(query, name=name)
+        result = rs.first()
+        if result is None:
+            return None
+        return dict(result)
+
+def get_drinker_beer(drinker_name):
+    with engine.connect() as con:
+
+        query = sql.text(
+            'SELECT bar, beer, date FROM transactions WHERE drinker = :drinker_name GROUP BY bar ORDER BY date ; \
+            ')
+
+        rs = con.execute(query, drinker_name=drinker_name)
+
+        results = [dict(row) for row in rs]
+        for i, _ in enumerate(results):
+            print(i)
+        return results
+
+
+def get_drinker_frequent_counts_by_bar(bar):
+    with engine.connect() as con:
+        query = sql.text('SELECT bar, count(*) AS customers \
+                FROM frequents \
+                WHERE bar = :bar \
+            ')
+        rs = con.execute(query, bar = bar)
+        results = [dict(row) for row in rs]
+        return results
+
+def beerSales(bar):
+    with engine.connect() as con:
+        query = sql.text('SELECT beer, count(*) AS customers \
+                FROM transactions \
+                WHERE bar = :bar \
+                GROUP BY beer; \
+            ')
+        rs = con.execute(query, bar = bar)
+        results = [dict(row) for row in rs]
+        return results
+
+def drinkerSales(bar):
+    with engine.connect() as con:
+        query = sql.text('SELECT drinker, count(*) AS customers \
+                FROM transactions \
+                WHERE bar = :bar \
+                GROUP BY drinker; \
+            ')
+        rs = con.execute(query, bar = bar)
+        results = [dict(row) for row in rs]
+        return results
+
+def barSales(beer):
+    with engine.connect() as con:
+        query = sql.text('SELECT bar, count(*) AS customers \
+                FROM transactions \
+                WHERE beer = :beer \
+                GROUP BY bar; \
+            ')
+        rs = con.execute(query, beer = beer)
+        results = [dict(row) for row in rs]
+        return results
+
+def beerDrinkers(beer):
+    with engine.connect() as con:
+        query = sql.text('SELECT drinker, count(*) AS customers \
+                FROM transactions \
+                WHERE beer = :beer \
+                GROUP BY drinker; \
+            ')
+        rs = con.execute(query, beer = beer)
+        results = [dict(row) for row in rs]
+        return results
+
+def beersDrankBy(drinker):
+    with engine.connect() as con:
+        query = sql.text('SELECT beer, count(*) AS bought \
+                FROM transactions \
+                WHERE drinker = :drinker \
+                GROUP BY beer; \
+            ')
+        rs = con.execute(query, drinker = drinker)
+        results = [dict(row) for row in rs]
+        return results
+
+def barsFrequentedBy(drinker):
+    with engine.connect() as con:
+        query = sql.text('SELECT bar, count(*) AS frequented \
+                FROM transactions \
+                WHERE drinker = :drinker \
+                GROUP BY bar; \
+            ')
+        rs = con.execute(query, drinker = drinker)
+        results = [dict(row) for row in rs]
+        return results
+
+def drinkerByMonth(drinker):
+    with engine.connect() as con:
+        query = sql.text('SELECT Month(date), count(*) AS count\
+                FROM transactions \
+                WHERE drinker = :drinker \
+                GROUP BY Month(date); \
+            ')
+        rs = con.execute(query, drinker = drinker)
+        results = [dict(row) for row in rs]
+        return results
+
+def drinkerByWeek(drinker):
+    with engine.connect() as con:
+        query = sql.text('SELECT Week(date), count(*) AS count \
+                FROM transactions \
+                WHERE drinker = :drinker \
+                GROUP BY Week(date); \
+            ')
+        rs = con.execute(query, drinker = drinker)
+        results = [dict(row) for row in rs]
+        return results
+
+def barByMonth(bar):
+    with engine.connect() as con:
+        query = sql.text('SELECT Month(date), count(*) AS count\
+                FROM transactions \
+                WHERE bar = :bar \
+                GROUP BY Month(date); \
+            ')
+        rs = con.execute(query, bar = bar)
+        results = [dict(row) for row in rs]
+        return results
+
+def barByWeekday(bar):
+    with engine.connect() as con:
+        query = sql.text('SELECT Dayofweek(date), count(*) AS count \
+                FROM transactions \
+                WHERE bar = :bar \
+                GROUP BY Dayofweek(date); \
+            ')
+        rs = con.execute(query, bar = bar)
+        results = [dict(row) for row in rs]
+        return results
+
+def barByHour(bar):
+    with engine.connect() as con:
+        query = sql.text('SELECT Hour(date), count(*) AS count\
+                FROM transactions \
+                WHERE bar = :bar \
+                GROUP BY Hour(date); \
+            ')
+        rs = con.execute(query, bar = bar)
+        results = [dict(row) for row in rs]
+        return results
+
+def beerByHour(beer):
+    with engine.connect() as con:
+        query = sql.text('SELECT Hour(date) AS hour, count(*) AS etc\
+                FROM transactions \
+                WHERE beer = :beer \
+                GROUP BY Hour(date); \
+            ')
+        rs = con.execute(query, beer = beer)
+        results = [dict(row) for row in rs]
+        return results

@@ -26,12 +26,16 @@ for i in bardata:
 	#randint_bar = random.randint(1, len(bardata)-1)
 	#randint_beer = random.randint(1, len(beerdata)-1)
 	count = 0;
-	while(count < 5):
+	while(count < 50):
 		randDrinker = random.randint(0,len(drinkerdata)-1)
+
+		if(bardata[rownum-1][6] == drinkerdata[randDrinker][4]):
+			 
+			 new_row = [bardata[rownum-1][0], drinkerdata[randDrinker][0]]
+			 new_rows_list.append(new_row)
+			 count+=1
 		#print(bardata[rownum-1][0], randBeer, beerdata[randBeer][0])
-		new_row = [bardata[rownum-1][0], drinkerdata[randDrinker][0]]
-		new_rows_list.append(new_row)
-		count+=1
+		
 	rownum += 1
 
 frequents_writer.writerows(new_rows_list)	

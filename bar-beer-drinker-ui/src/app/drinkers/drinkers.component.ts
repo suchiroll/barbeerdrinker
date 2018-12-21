@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DrinkersService } from '../drinkers.service';
+import { DrinkersService, Drinker } from '../drinkers.service';
 import { SelectItem } from 'primeng/components/common/selectitem';
 
 @Component({
